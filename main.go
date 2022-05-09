@@ -11,6 +11,7 @@ import (
 func Handlers() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 	r.HandleFunc("/", handleRequest).Methods("GET")
+	r.HandleFunc("/kubecon", handleRequest).Methods("GET")
 	return r
 
 }
