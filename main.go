@@ -11,10 +11,15 @@ import (
 func Handlers() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 	r.HandleFunc("/", handleRequest).Methods("GET")
+	r.HandleFunc("/kubecon", handleRequestWithError).Methods("GET")
 	return r
 
 }
 func handleRequest(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "Hello Valenica!")
+}
+func handleRequestWithError(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusInternalServerError)
 	fmt.Fprintf(w, "Hello Valenica with an error!")
 }
