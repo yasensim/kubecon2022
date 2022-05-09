@@ -15,7 +15,8 @@ func Handlers() *mux.Router {
 
 }
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello Valenica!")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "Hello Valenica from Intuit!")
 }
 func main() {
 	r := Handlers()
