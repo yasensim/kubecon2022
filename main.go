@@ -15,7 +15,7 @@ func Handlers() *mux.Router {
 
 }
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusInternalServerError)
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Hello Valenica with an error!")
 }
 func main() {
