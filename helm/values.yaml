@@ -25,7 +25,7 @@ rollout:
   enabled: false
   steps:
   - setWeight: 10
-  - pause: {duration: 2m}
+  - pause: {duration: 1m}
   - setWeight: 30
   - pause: {duration: 30s}
   - setWeight: 50
