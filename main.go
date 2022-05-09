@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
+
+func Handlers() *mux.Router {
+	r := mux.NewRouter().StrictSlash(true)
+	r.HandleFunc("/", handleRequest).Methods("GET")
+	return r
+
+}
+func handleRequest(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello Valenica!")
+}
+func main() {
+	r := Handlers()
+
+	err := http.ListenAndServe(":80", r)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
