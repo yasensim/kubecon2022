@@ -9,12 +9,13 @@ Demo App for Kubecon EU 2022 for Istio Service Mesh and Argo Rollout
 while true ; do curl -w " - code: %{http_code}\n" http://kc.yasensim.net/kubecon ; sleep 0.5 ; done
 ```
 
-## commands used 
+## deploying the new versions app 
 
 preinstalled applications  
 - argo rollout 
 - istio 
 
+### version 1
 ```
 kubectl argo rellout version
 kubectl create namespace kubecon
@@ -23,8 +24,8 @@ helm upgrade --install kubecon helm --namespace helm --values rollout/values-ana
 --set ingress.host=kc.yasensim.net --set image.tag=v1.0 --wait
 
 kubectl argo rollouts --namespace kubecon get rollout kubecon-kubecon --watch 
-
 ```
 ![image](https://user-images.githubusercontent.com/4955356/172356136-bcdaf56f-b058-4918-8b03-0dd1d65e1048.png)
 
+### version 2
 
