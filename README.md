@@ -11,21 +11,32 @@ while true ; do curl -w " - code: %{http_code}\n" http://kc.yasensim.net/kubecon
 
 ## deploying the new versions app 
 
+### preparation 
 preinstalled applications  
 - argo rollout 
 - istio 
-
-### version 1
+- lable namespace as below 
 ```
 kubectl argo rellout version
 kubectl create namespace kubecon
 kubectl label  namespace kubecon istio-injection=enabled 
-helm upgrade --install kubecon helm --namespace helm --values rollout/values-analysis.yaml \
+```
+
+### deploy version 1
+```
+helm upgrade --install kubecon helm --namespace kubecon --values rollout/values-analysis.yaml \
 --set ingress.host=kc.yasensim.net --set image.tag=v1.0 --wait
 
 kubectl argo rollouts --namespace kubecon get rollout kubecon-kubecon --watch 
 ```
 ![image](https://user-images.githubusercontent.com/4955356/172356136-bcdaf56f-b058-4918-8b03-0dd1d65e1048.png)
 
-### version 2
 
+```
+kubectl get rollout -n kubecon kubecon-kubecon -o yaml 
+```
+
+### deploy version 2
+```
+helm upgrade  kubecon helm --namespace kubecon --reuse-values --set image.tag=v2.0 --wait
+```
