@@ -2,6 +2,7 @@
 Demo App for Kubecon EU 2022 for Istio Service Mesh and Argo Rollout
 
 
+
 [Demo link](https://youtu.be/5Ko-CnP2qhA?list=PLj6h78yzYM2MCEgkd8zH0vJWF7jdQ-GRR&t=1318)
 
 ## validations windows
@@ -36,7 +37,21 @@ kubectl argo rollouts --namespace kubecon get rollout kubecon-kubecon --watch
 kubectl get rollout -n kubecon kubecon-kubecon -o yaml 
 ```
 
-### deploy version 2
+### deploy version 2 - bad application  
+```
+helm upgrade  kubecon helm --namespace kubecon --reuse-values --set image.tag=v2.0 --wait
+
+#check virtual service
+kubectl get vs -n kubecon -o yaml 
+kubectl argo rollouts --namespace kubecon get rollout kubecon-kubecon --watch 
+```
+
+![image](https://user-images.githubusercontent.com/4955356/172357534-21ebd9c6-484f-4474-be90-f1cc9239cb18.png)
+
+
+
+### deploy version 3 - good application 
 ```
 helm upgrade  kubecon helm --namespace kubecon --reuse-values --set image.tag=v2.0 --wait
 ```
+
